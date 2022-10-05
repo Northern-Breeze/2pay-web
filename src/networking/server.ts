@@ -32,10 +32,16 @@ class Server {
       },
     );
   }
-  static registerUser(data: {name: string; email: string; password: string}) {
-    const {name, email, password} = data;
+  /**
+   * This function register a user to the service
+   * @param data { firstName: string, lastName: string, email: string, password: string }
+   * @returns 
+   */
+  static registerUser(data: {firstName: string; lastName: string; email: string; password: string}) {
+    const {firstName, lastName, email, password} = data;
     return Axios.post('/auth/register', {
-      name,
+      firstName,
+      lastName,
       email,
       password,
     });

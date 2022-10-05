@@ -46,7 +46,6 @@ instance.interceptors.request.use(
     if (config.url && config.url.charAt(0) === '/') {
       config.url = `${baseURL}${config.url}`;
     }
-
     return config;
   },
   error => Promise.reject(error),

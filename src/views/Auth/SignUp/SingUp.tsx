@@ -1,6 +1,10 @@
 import * as React from 'react';
+import Notification from 'antd/es/notification';
+import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from "react-hook-form";
 import './SignUp.scss';
+import Server from '../../../networking/server';
+import Input from '../../../components/common/Input';
 
 type Inputs = {
   lastName: string,
@@ -11,11 +15,40 @@ type Inputs = {
 
 export default function SingUp() {
 
+  const [loading, setLoading] = React.useState(false);
+
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+      try {
+        setLoading(true);
+        const response = await Server.registerUser({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password
+        });
+        if (!response.data.success) {
+          Notification.error({
+            message: response.data.message
+          })
+          setLoading(false);
+        } else {
+          setLoading(false);
+          navigate('/login')
+          Notification.success({
+            message: response.data.message
+          })
+        }        
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+        Notification.error({
+          message: 'Something went wrong please try again later'
+        })
+      }
   };
 
 
@@ -25,28 +58,20 @@ export default function SingUp() {
       <div className='form-container'>
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label htmlFor="FirstName">First Name</label>
-            <input type="text" className="form-control" {...register("firstName", { required: true, maxLength: 100, minLength: 2 })} />
-            {errors.firstName && <div className='invalid-feedback'>{errors.firstName.message}</div>}
+            <Input label='firstName' register={register} required errors={errors} type="text" />
           </div>
           <div className="form-group">
-            <label htmlFor="LastName">First Name</label>
-            <input type="text" className="form-control" {...register('lastName', { required: true, maxLength: 100, minLength: 2 })} />
-            {errors.lastName && <div className='invalid-feedback'>{errors.lastName.message}</div>}
+            <Input label='lastName' register={register} required errors={errors} type="text" />
           </div>
           <div className="form-group">
-            <label htmlFor="Email">Email</label>
-            <input type="email" className="form-control" {...register('email', { required: true, maxLength: 100 })} />
-            {errors.email && <div className='invalid-feedback'>{errors.email.message}</div>}
+            <Input label='email' register={register} required errors={errors} type="email" />
           </div>
           <div className="form-group">
-            <label htmlFor="Password">Password</label>
-            <input type="password" className="form-control" {...register('password', { required: true })}/>
-            {errors.password && <div className='invalid-feedback'>{errors.password.message}</div>}
+            <Input label='password' register={register} required errors={errors} type="password" />
           </div>
           <div className='form-group'>
             <button className='btn btn-primary'>
-              Register Now!
+              {loading ? 'Loading ...': 'Sign Up'}
             </button>
           </div>
         </form>
