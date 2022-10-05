@@ -1,10 +1,18 @@
+@import '../../../scss/buttons';
+
 .sign-up-container {
     display: flex;
     height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .header {
+        font-size: 30px;
+    }
     .form-control {
-        
+        min-width: 400px;
+        max-width: 500px;
+        padding: 10px;
+        margin: 2px;
     }
 }
