@@ -4,6 +4,7 @@ import Notification from 'antd/es/notification';
 import Input from '../../../components/common/Input';
 import './SignIn.scss'
 import Server from '../../../networking/server';
+import { Link } from 'react-router-dom';
 
 type Inputs = {
   email: string;
@@ -41,10 +42,15 @@ export default function SignIn() {
       <div className='form-container'>
         <form className='form'  onSubmit={handleSubmit(onSubmit)}>
           <div className='form-group'>
-            <Input label='email' register={register} required type='email' errors={errors} />
+            <Input label='Email' register={register} required type='email' errors={errors} placeholder="Email" value='email' />
           </div>
           <div className='form-group'>
-            <Input label='password' register={register} required type='password' errors={errors} />
+            <Input label='Password' register={register} required type='password' errors={errors} placeholder="Password" value='password' />
+          </div>
+          <div className='form-group'>
+            <Link to="/register" className='link'>
+              Don't have an account? Sign Up
+            </Link>
           </div>
           <div className='form-group'>
             <button className='btn btn-primary'>

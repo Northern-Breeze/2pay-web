@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Notification from 'antd/es/notification';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from "react-hook-form";
 import './SignUp.scss';
 import Server from '../../../networking/server';
@@ -58,16 +58,21 @@ export default function SingUp() {
       <div className='form-container'>
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <Input label='firstName' register={register} required errors={errors} type="text" />
+            <Input label='First Name' register={register} required errors={errors} type="text" placeholder='First Name' value='firstName' />
           </div>
           <div className="form-group">
-            <Input label='lastName' register={register} required errors={errors} type="text" />
+            <Input label='Last Name' register={register} required errors={errors} type="text" placeholder='Last Name' value='lastName' />
           </div>
           <div className="form-group">
-            <Input label='email' register={register} required errors={errors} type="email" />
+            <Input label='Email' register={register} required errors={errors} type="email" placeholder='Email' value='email' />
           </div>
           <div className="form-group">
-            <Input label='password' register={register} required errors={errors} type="password" />
+            <Input label='Password' register={register} required errors={errors} type="password" placeholder='Password' value='password' />
+          </div>
+          <div className='form-group'>
+            <Link to="/login" className="link">
+              Already have an account? SignIn
+            </Link>
           </div>
           <div className='form-group'>
             <button className='btn btn-primary'>
