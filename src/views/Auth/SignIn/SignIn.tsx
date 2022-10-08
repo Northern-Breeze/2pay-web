@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {useForm, SubmitHandler} from 'react-hook-form';
 import Notification from 'antd/es/notification';
-import Input from '../../../components/common/Input';
-import './SignIn.scss'
-import Server from '../../../networking/server';
 import { Link } from 'react-router-dom';
+import { useStoreActions } from 'easy-peasy';
+import { useNavigate } from 'react-router-dom';
+import Input from '../../../components/common/Input';
+import Server from '../../../networking/server';
+
+import './SignIn.scss'
 
 type Inputs = {
   email: string;
@@ -14,8 +17,11 @@ type Inputs = {
 export default function SignIn() {
   const [loading, setLoading] = React.useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const saveToken = useStoreActions<any>(actions => actions.saveToken);
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
       try {
+        setLoading(true);
         const response = await Server.signInUser({
           email: data.email,
           password: data.password
@@ -24,12 +30,19 @@ export default function SignIn() {
           Notification.error({
             message: response.data.message
           });
+          setLoading(false);
         } else {
+          setLoading(false);
+          const token = response.data.data.token;
+          saveToken({ token, profile: response.data.data.profile });
+          localStorage.setItem('authToken', token);
           Notification.success({
             message: response.data.message
-          })
+          });
+          navigate('/');
         }
       } catch (error) {
+        setLoading(false);
         console.log(error);
         Notification.error({
           message: 'Something went wrong please try again later'

@@ -5,7 +5,7 @@
     border-radius: 10px;
     border: 1px solid $primary-color;
     width: 100%;
-    margin: 2px;
+    margin: 5px;
     padding: 10px;
 
     &:hover {
@@ -13,6 +13,7 @@
         background-color: $primary-color;
         background: $primary-color;
         border-radius: 12px;
+        border: 1px solid $primary-color;
     }
 
 }

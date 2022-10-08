@@ -28,8 +28,11 @@ instance.interceptors.request.use(
     if (!config.headers) {
       return config;
     }
+    const token = localStorage.getItem('authToken') || "";
+
     if (config.url && config.url.charAt(0) === '/') {
       config.url = `${baseURL}${config.url}`;
+      config.headers.authorization = `Bearer ${token}`;
     }
 
     return config;
@@ -43,8 +46,10 @@ instance.interceptors.request.use(
       return config;
     }
     baseURL = `${configs.SERVER_URL}`;
+    const token = localStorage.getItem('authToken') || "";
     if (config.url && config.url.charAt(0) === '/') {
       config.url = `${baseURL}${config.url}`;
+      config.headers.authorization = `Bearer ${token}`;
     }
     return config;
   },

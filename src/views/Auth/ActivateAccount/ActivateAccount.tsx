@@ -46,7 +46,7 @@ export default function ActivateAccount() {
         <div className='form-container'>
             <form className='form'  onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-group'>
-                    <Input type='text' register={register} required errors={errors} label='activate' placeholder='Enter OTP Code' />
+                    <Input type='text' register={register} required errors={errors} label='Activate' placeholder='Enter OTP Code' value='activate'/>
                 </div>
                 <div className='form-group'>
                     <button className='btn btn-primary'>

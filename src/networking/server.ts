@@ -1,12 +1,8 @@
 import Axios from './adaptor';
 
 class Server {
-  static fetchUser(token: string) {
-    return Axios.get('/users/users', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  static fetchUser() {
+    return Axios.get('/users');
   }
   static verifyPayment(data: {token: string; id: number}, token: string) {
     return Axios.post(
