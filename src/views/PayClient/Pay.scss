@@ -10,6 +10,13 @@
     font-family: $font-family;
     margin: 15px;
   }
+  .loader {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .image-container {
     .image {
       border-radius: 50%;

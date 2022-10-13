@@ -11,6 +11,7 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.4.7",
     "antd": "^4.23.2",
     "axios": "^1.0.0",
     "bootstrap": "5.2.1",
