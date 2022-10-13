@@ -1,4 +1,4 @@
-import {action, Action} from 'easy-peasy';
+import { action, Action } from "easy-peasy";
 
 interface UserModel {
   profile: {
@@ -36,18 +36,18 @@ interface UserModel {
       };
     }
   >;
-  updateAvatar: Action<this, {avatar: string}>;
+  updateAvatar: Action<this, { avatar: string }>;
 }
 
 const User: UserModel = {
   profile: {
-    firstName: '',
-    lastName: '',
-    fullName: '',
-    avatar: '',
-    email: '',
+    firstName: "",
+    lastName: "",
+    fullName: "",
+    avatar: "",
+    email: "",
   },
-  token: '',
+  token: "",
   isAuth: false,
   saveToken: action((state, payload) => {
     const oldState = state;
@@ -55,10 +55,10 @@ const User: UserModel = {
     oldState.profile = payload.profile;
     oldState.isAuth = true;
   }),
-  logOut: action(state => {
+  logOut: action((state) => {
     const oldState = state;
     oldState.isAuth = false;
-    oldState.token = '';
+    oldState.token = "";
   }),
   updateProfile: action((state, payload) => {
     const oldState = state;

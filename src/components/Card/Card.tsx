@@ -21,26 +21,26 @@ export default function Article(props: Props) {
   const navigate = useNavigate();
 
   return (
-    <div className='card-container' onClick={() => {
-      navigate('/pay', {
-        state: {
-          userId: item.id,
-          firstName: item.first_name,
-          lastName: item.last_name,
-          email: item.email,
-          avatar: item.avatar,
-          sessionId: Math.random()
-        }
-      })
-    }}>
-      <img src={item.avatar} alt={item.first_name +' '+ item.last_name} />
-      <div className='card-details'>
-        <h2 className="header">{item.first_name +' '+ item.last_name}</h2>
+    <div
+      className="card-container"
+      onClick={() => {
+        navigate("/pay", {
+          state: {
+            userId: item.id,
+            firstName: item.first_name,
+            lastName: item.last_name,
+            email: item.email,
+            avatar: item.avatar,
+            sessionId: Math.random(),
+          },
+        });
+      }}
+    >
+      <img src={item.avatar} alt={item.first_name + " " + item.last_name} />
+      <div className="card-details">
+        <h2 className="header">{item.first_name + " " + item.last_name}</h2>
         <div>
-          <Description
-            handleClick={() => {}}
-            description={item.profession}
-          />
+          <Description description={item.profession} />
         </div>
       </div>
     </div>

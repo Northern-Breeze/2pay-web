@@ -1,33 +1,45 @@
-@import '../../scss/utils';
+@import "../../scss/utils";
 
 .pay-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .header {
+    font-size: x-large;
+    font-family: $font-family;
+    margin: 15px;
+  }
+  .image-container {
+    .image {
+      border-radius: 50%;
+      height: 400px;
+      width: 400px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .amount-enter {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
-    flex-direction: column;
-    .image-container {
-        .image {
-            border-radius: 50%;
-            height: 400px;
-            width: 400px;
-            object-fit: cover;
-            object-position: center;
-        }
+    margin: 5px;
+    .form-control {
+      margin: 0px;
+      border: 1px solid $primary-color;
     }
-    .amount-enter {
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: row;
-        align-items: center;
-        margin: 5px;
-        span {
-            font-weight: bold;
-            font-size: 25px;
-            margin-inline: 6px;
-        }
+    span {
+      font-weight: bold;
+      font-size: 25px;
+      margin-inline: 6px;
     }
-    .amount {
-        font-family: $font-family;
-        font-weight: bold;
-    }
+  }
+  .amount {
+    font-family: $font-family;
+    font-weight: bold;
+  }
+  button.btn {
+    width: 350px;
+  }
 }

@@ -1,41 +1,37 @@
-import Axios from './adaptor';
+import Axios from "./adaptor";
 
 class Server {
   static fetchUser() {
-    return Axios.get('/users');
+    return Axios.get("/users");
   }
-  static verifyPayment(data: {token: string; id: number}, token: string) {
-    return Axios.post(
-      '/payment/verify_payment',
-      {
-        reference: data.token,
-        userId: data.id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+  static verifyPayment(data: { token: string; id: number }) {
+    return Axios.post("/transaction/verify_payment", {
+      reference: data.token,
+      userId: data.id,
+    });
   }
-  static async signInUser(data: {email: string; password: string}) {
-    const {email, password} = data;
-    return Axios.post(
-      '/auth/login',
-      {
-        email,
-        password,
-      },
-    );
+
+  static async signInUser(data: { email: string; password: string }) {
+    const { email, password } = data;
+    return Axios.post("/auth/login", {
+      email,
+      password,
+    });
   }
+
   /**
    * This function register a user to the service
    * @param data { firstName: string, lastName: string, email: string, password: string }
-   * @returns 
+   * @returns
    */
-  static registerUser(data: {firstName: string; lastName: string; email: string; password: string}) {
-    const {firstName, lastName, email, password} = data;
-    return Axios.post('/auth/register', {
+  static registerUser(data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) {
+    const { firstName, lastName, email, password } = data;
+    return Axios.post("/auth/register", {
       firstName,
       lastName,
       email,
@@ -43,9 +39,9 @@ class Server {
     });
   }
   static fetchUserInfo(
-    token: string,
-  ): Promise<{data: {success: boolean; data: any}}> {
-    return Axios.get('/profile/transactions', {
+    token: string
+  ): Promise<{ data: { success: boolean; data: any } }> {
+    return Axios.get("/profile/transactions", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,7 +49,7 @@ class Server {
   }
   static updateProfile(data: any, token: string) {
     return Axios.put(
-      '/profile/update',
+      "/profile/update",
       {
         ...data,
       },
@@ -61,12 +57,12 @@ class Server {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
   }
   static updateImage(uri: string, name: string, token: string) {
     return Axios.put(
-      '/profile/update-image',
+      "/profile/update-image",
       {
         uri,
         name,
@@ -75,11 +71,11 @@ class Server {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
   }
   static fetchAccounts(token: string) {
-    return Axios.get('/profile/accounts', {
+    return Axios.get("/profile/accounts", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -87,10 +83,10 @@ class Server {
   }
   static generateQRCode(
     token: string,
-    payload: {amount: number; currency: string},
+    payload: { amount: number; currency: string }
   ) {
     return Axios.post(
-      '/profile/generate-qrc',
+      "/profile/generate-qrc",
       {
         amount: payload.amount,
         currency: payload.currency,
@@ -99,12 +95,12 @@ class Server {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
   }
   static verifyAccount(token: string) {
     return Axios.post(
-      '/auth/verify_account',
+      "/auth/verify_account",
       {
         token,
       },
@@ -112,19 +108,23 @@ class Server {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
   }
   static passwordUpdateRequest(email: string) {
-    return Axios.post('/auth/password_request', {
+    return Axios.post("/auth/password_request", {
       email,
     });
   }
   static updatePassword(password: string, token: string) {
-    return Axios.put('/auth/update_password', {
+    return Axios.put("/auth/update_password", {
       password,
       token,
     });
+  }
+
+  static getNotification() {
+    return Axios.get("/users/notifications");
   }
 }
 

@@ -1,1 +1,1 @@
-export {default} from './SingUp'
+export { default } from "./SingUp";

@@ -9,20 +9,23 @@ import {
   UserOutlined,
   LogoutOutlined,
   QuestionOutlined,
-  ClockCircleOutlined,
-  SettingOutlined
+  NotificationOutlined,
+  HomeOutlined,
+  ScanOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 
-import './Template.scss'
+import "./Template.scss";
 
 const { Header, Sider, Content } = Layout;
 
 type Props = {
   children: React.ReactNode;
+  defaultIndex: string;
 };
 
 export default function TemplateWrapper(props: Props): JSX.Element {
-  const { children } = props;
+  const { children, defaultIndex } = props;
   const [collapsed, setCollapsed] = React.useState(false);
   const [isOnline, setOnline] = React.useState(true);
 
@@ -40,12 +43,21 @@ export default function TemplateWrapper(props: Props): JSX.Element {
   React.useEffect(() => {
     setOnline(navigator.onLine);
   }, []);
-  if(!isOnline){
-    return <div className="offline-container"><span>Your offline, no internet connection</span></div>
+  if (!isOnline) {
+    return (
+      <div className="offline-container">
+        <span>Your offline, no internet connection</span>
+      </div>
+    );
   }
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} className="side-bar">
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        className="side-bar"
+      >
         <div className="logo">
           <img
             src="https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4"
@@ -53,9 +65,27 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             alt="Northern Breeze"
           />
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={[defaultIndex]}>
           <Menu.Item
             key="1"
+            icon={<HomeOutlined />}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            icon={<ScanOutlined />}
+            onClick={() => {
+              navigate("/scan");
+            }}
+          >
+            Scan
+          </Menu.Item>
+          <Menu.Item
+            key="3"
             icon={<SearchOutlined />}
             onClick={() => {
               navigate("/search");
@@ -64,7 +94,34 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             Search
           </Menu.Item>
           <Menu.Item
-            key="2"
+            key="4"
+            icon={<InfoCircleOutlined />}
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            About 2tip
+          </Menu.Item>
+          <Menu.Item
+            key="5"
+            icon={<QuestionOutlined />}
+            onClick={() => {
+              navigate("/help");
+            }}
+          >
+            Help
+          </Menu.Item>
+          <Menu.Item
+            key="6"
+            icon={<NotificationOutlined />}
+            onClick={() => {
+              navigate("/notifications");
+            }}
+          >
+            Notifications
+          </Menu.Item>
+          <Menu.Item
+            key="7"
             icon={<UserOutlined />}
             onClick={() => {
               navigate("/profile");
@@ -73,34 +130,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             Profile
           </Menu.Item>
           <Menu.Item
-            key="4"
-            icon={<ClockCircleOutlined />}
-            onClick={() => {
-              navigate("/profile/study-coach");
-            }}
-          >
-            Study Coach
-          </Menu.Item>
-          <Menu.Item
-            key="7"
-            icon={<QuestionOutlined />}
-            onClick={() => {
-              navigate("/profile/questions-simulator");
-            }}
-          >
-            Question simulator
-          </Menu.Item>
-          <Menu.Item
-            key="5"
-            icon={<SettingOutlined />}
-            onClick={() => {
-              navigate("/profile/settings");
-            }}
-          >
-            Settings
-          </Menu.Item>
-          <Menu.Item
-            key="6"
+            key="8"
             icon={<LogoutOutlined />}
             onClick={() => {
               localStorage.clear();

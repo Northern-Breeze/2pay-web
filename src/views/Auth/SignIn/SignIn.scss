@@ -1,18 +1,18 @@
-@import '../../../scss/utils';
+@import "../../../scss/utils";
 
 .log-in-container {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .header {
-        font-size: 30px;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .header {
+    font-size: 30px;
+  }
+  .form-group {
+    padding: 10px;
+    .link {
+      color: $primary-color;
     }
-    .form-group {
-      padding: 10px;
-      .link {
-        color: $primary-color
-      }
-    }
+  }
 }
