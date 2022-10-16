@@ -1,6 +1,6 @@
 import { action, Action } from "easy-peasy";
 
-interface UserModel {
+export interface Model {
   profile: {
     fullName: string;
     lastName: string;
@@ -39,7 +39,7 @@ interface UserModel {
   updateAvatar: Action<this, { avatar: string }>;
 }
 
-const User: UserModel = {
+const model: Model = {
   profile: {
     firstName: "",
     lastName: "",
@@ -70,4 +70,4 @@ const User: UserModel = {
   }),
 };
 
-export default User;
+export default model;

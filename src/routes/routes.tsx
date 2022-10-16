@@ -12,6 +12,7 @@ import Notifications from "../views/Notifications";
 import About from "../views/About";
 import Scan from "../views/Scan";
 import Help from "../views/Help";
+import Profile from "../views/Profile";
 
 export default function AppRouter() {
   return (
@@ -26,6 +27,7 @@ export default function AppRouter() {
         <Route path="/search" element={<PrivateRoutes component={Search} />} />
         <Route path="/pay" element={<PrivateRoutes component={Pay} />} />
         <Route path="/help" element={<PrivateRoutes component={Help} />} />
+        <Route path="/profile" element={<PrivateRoutes component={Profile} />} />
         <Route
           path="/notifications"
           element={<PrivateRoutes component={Notifications} />}
