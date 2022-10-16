@@ -1,5 +1,6 @@
 import * as React from "react";
+import TemplateWrapper from "../Template";
 
 export default function About() {
-  return <div>About</div>;
+  return <TemplateWrapper defaultIndex="4">About</TemplateWrapper>;
 }

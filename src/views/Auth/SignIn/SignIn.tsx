@@ -82,7 +82,7 @@ export default function SignIn() {
           </div>
           <div className="form-group">
             <Link to="/register" className="link">
-              Don{`&apos`}t have an account? Sign Up
+              Don't have an account? Sign Up
             </Link>
           </div>
           <div className="form-group">
@@ -91,7 +91,7 @@ export default function SignIn() {
             </Link>
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">
+            <button className="btn btn-primary btn-lg">
               {loading ? "Loading ..." : "Sign In"}
             </button>
           </div>
