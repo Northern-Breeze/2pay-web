@@ -5,6 +5,7 @@ import { Model } from '../../store/model';
 import {UserOutlined, MailOutlined} from '@ant-design/icons';
 
 import './Profile.scss';
+import Button from '../../components/common/Button';
 
 export default function Profile() {
   const profile = useStoreState<Model>((state) => state.profile)
@@ -18,6 +19,11 @@ export default function Profile() {
                 <div className='details'>
                     <div className='names'><UserOutlined /><span>{profile.firstName} {profile.lastName}</span></div>
                     <div className='names'><MailOutlined /><span>{profile.email}</span></div>
+                </div>
+                <div className='edit-container'>
+                    <Button type='primary' clickHandler={() => {}}>
+                        Update Profile
+                    </Button>
                 </div>
             </div>
         </div>

@@ -109,7 +109,7 @@ export default function SingUp() {
             </Link>
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">
+            <button className="btn btn-primary btn-lg">
               {loading ? "Loading ..." : "Sign Up"}
             </button>
           </div>

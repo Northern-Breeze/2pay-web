@@ -27,56 +27,7 @@ type NotificationProp = {
 
 export default function Notifications() {
   const [severState, setServerState] = React.useState<SERVER_STATE>('IDLE');
-  const [notification, setNotification] = React.useState<NotificationProp[]>([
-    {
-      id: 8,
-      message: "Samuel Mothwa has made a payment of ZAR 1500",
-      type: "TRANSACTION_IN",
-      urgency: 1,
-      raw: {
-        date: "13/10/2022",
-        name: "Samuel Mothwa",
-        image:
-          "https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4",
-        amount: 1500,
-        currency: "ZAR",
-        displayTitle: "Samuel Mothwa has made a payment of ZAR 1500",
-      },
-      date_created: "2022-10-13T20:33:58.000Z",
-    },
-    {
-      id: 9,
-      message: "Jay Jay has made a payment of ZAR 10000",
-      type: "TRANSACTION_IN",
-      urgency: 1,
-      raw: {
-        date: "13/10/2022",
-        name: "Jay Jay",
-        image:
-          "https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4",
-        amount: 10000,
-        currency: "ZAR",
-        displayTitle: "Jay Jay has made a payment of ZAR 10000",
-      },
-      date_created: "2022-10-13T20:35:35.000Z",
-    },
-    {
-      id: 10,
-      message: "Jay Jay has made a payment of ZAR 100000",
-      type: "TRANSACTION_IN",
-      urgency: 1,
-      raw: {
-        date: "13/10/2022",
-        name: "Jay Jay",
-        image:
-          "https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4",
-        amount: 100000,
-        currency: "ZAR",
-        displayTitle: "Jay Jay has made a payment of ZAR 100000",
-      },
-      date_created: "2022-10-13T21:01:59.000Z",
-    },
-  ]);
+  const [notification, setNotification] = React.useState<NotificationProp[]>([]);
   const fetchNotifications = React.useCallback(async () => {
     try {
       setServerState('LOADING');
@@ -88,6 +39,7 @@ export default function Notifications() {
         });
       } else {
         setServerState('SUCCESS');
+        setNotification(response.data.data);
         Notification.success({
           message: "Successfully fetched notifications",
         });

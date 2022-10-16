@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Notification.scss';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { formatRelative, subDays } from 'date-fns'
 type Props = {
     data: {
         id: number,

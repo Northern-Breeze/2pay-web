@@ -9,11 +9,11 @@ export default function Scan() {
       <div className="scanner-container">
         <QrReader
           onResult={(result, error) => {
-            if (!!result) {
+            if (result) {
               console.log(result?.getText());
             }
 
-            if (!!error) {
+            if (error) {
               console.info(error);
             }
           }}

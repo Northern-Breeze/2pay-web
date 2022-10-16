@@ -1,15 +1,17 @@
 import * as React from "react";
-import { FieldErrorsImpl, Path, UseFormRegister } from "react-hook-form";
+import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import "./Input.scss";
 
 type Props = {
   label: string;
+  // eslint-ignore-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>;
   required: boolean;
   errors: FieldErrorsImpl<{
     email: string;
     password: string;
     firstName: string;
+    activate: string;
   }>;
   type: string;
   placeholder: string;

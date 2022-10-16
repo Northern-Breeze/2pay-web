@@ -59,7 +59,7 @@ export default function ActivateAccount() {
             />
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">
+            <button className="btn btn-primary btn-lg">
               {loading ? "Loading ..." : "Activate"}
             </button>
           </div>

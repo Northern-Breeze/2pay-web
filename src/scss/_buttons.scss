@@ -7,7 +7,7 @@ button.btn.btn-primary {
   border: 1px solid $primary-color;
   margin: 5px;
   padding: 10px;
-
+  width: 100%;
   &:hover {
     transform: scale(0.9);
     background-color: $primary-color;
