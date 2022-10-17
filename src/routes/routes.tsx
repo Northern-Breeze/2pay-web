@@ -8,11 +8,12 @@ import SignIn from "../views/Auth/SignIn";
 import SignUp from "../views/Auth/SignUp";
 import Home from "../views/Home";
 import Search from "../views/Search";
-import Notifications from "../views/Notifications";
 import About from "../views/About";
 import Scan from "../views/Scan";
 import Help from "../views/Help";
 import Profile from "../views/Profile";
+import Edit from "../views/Profile/Edit";
+import Transactions from "../views/Transactions";
 
 export default function AppRouter() {
   return (
@@ -28,9 +29,10 @@ export default function AppRouter() {
         <Route path="/pay" element={<PrivateRoutes component={Pay} />} />
         <Route path="/help" element={<PrivateRoutes component={Help} />} />
         <Route path="/profile" element={<PrivateRoutes component={Profile} />} />
+        <Route path="/profile/edit" element={<PrivateRoutes component={Edit} />} />
         <Route
-          path="/notifications"
-          element={<PrivateRoutes component={Notifications} />}
+          path="/transactions"
+          element={<PrivateRoutes component={Transactions} />}
         />
       </Routes>
     </Router>

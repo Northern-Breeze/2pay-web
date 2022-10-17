@@ -4,10 +4,11 @@ class Server {
   static fetchUser() {
     return Axios.get("/users");
   }
-  static verifyPayment(data: { token: string; id: number }) {
+  static verifyPayment(data: { token: string; id: number, source: string }) {
     return Axios.post("/transaction/verify_payment", {
       reference: data.token,
       userId: data.id,
+      source: data.source
     });
   }
 

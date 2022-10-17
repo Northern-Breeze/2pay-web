@@ -70,6 +70,7 @@ export default function Pay() {
         const response = await Server.verifyPayment({
           token,
           id: location.state.userId,
+          source: 'PAYSTACK'
         });
         if (!response.data.success) {
           setServerStates("ERROR");

@@ -9,7 +9,7 @@ import {
   UserOutlined,
   LogoutOutlined,
   QuestionOutlined,
-  NotificationOutlined,
+  MoneyCollectOutlined,
   HomeOutlined,
   ScanOutlined,
   InfoCircleOutlined,
@@ -113,12 +113,12 @@ export default function TemplateWrapper(props: Props): JSX.Element {
           </Menu.Item>
           <Menu.Item
             key="6"
-            icon={<NotificationOutlined />}
+            icon={<MoneyCollectOutlined />}
             onClick={() => {
-              navigate("/notifications");
+              navigate("/transactions");
             }}
           >
-            Notifications
+            Transactions
           </Menu.Item>
           <Menu.Item
             key="7"
