@@ -41,13 +41,14 @@ class Server {
   }
   static fetchUserInfo(
     token: string
-  ): Promise<{ data: { success: boolean; data: any } }> {
+  ): Promise<{ data: { success: boolean } }> {
     return Axios.get("/profile/transactions", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static updateProfile(data: any, token: string) {
     return Axios.put(
       "/profile/update",

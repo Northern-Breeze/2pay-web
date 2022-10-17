@@ -21,8 +21,6 @@ type Props = {
 
 export default function Notification(props: Props) {
   const { data} = props;
-  const date = data.date_created as unknown as Date;
-
   return (
     <div className='notification-single-container'>
         <div>

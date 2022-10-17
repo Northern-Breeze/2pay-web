@@ -4,7 +4,7 @@ import "./Input.scss";
 
 type Props = {
   label: string;
-  // eslint-ignore-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>;
   required: boolean;
   errors: FieldErrorsImpl<{

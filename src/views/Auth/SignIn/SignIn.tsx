@@ -6,7 +6,7 @@ import { useStoreActions } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/common/Input";
 import Server from "../../../networking/server";
-
+import { Model } from "../../../store/model";
 import "./SignIn.scss";
 
 type Inputs = {
@@ -21,7 +21,7 @@ export default function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const saveToken = useStoreActions<any>((actions) => actions.saveToken);
+  const saveToken = useStoreActions<Model>((actions) => actions.saveToken);
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
@@ -82,7 +82,7 @@ export default function SignIn() {
           </div>
           <div className="form-group">
             <Link to="/register" className="link">
-              Don't have an account? Sign Up
+              Don&apos;t have an account? Sign Up
             </Link>
           </div>
           <div className="form-group">

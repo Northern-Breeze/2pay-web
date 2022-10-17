@@ -11,19 +11,6 @@ import Server from "../../networking/server";
 import Loading from "../../components/Loading";
 import ThankYou from "../../components/ThankYou";
 
-type Props = {
-  location: {
-    state: {
-      userId: number;
-      firstName: string;
-      lastName: string;
-      email: string;
-      avatar: string;
-      sessionId: number;
-    };
-  };
-};
-
 type Reference = {
   message: string;
   redirect: string;
@@ -43,8 +30,9 @@ export default function Pay() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleAmount = (e: any) => {
-    setAmount(e.target.value);
+  const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value as unknown as number;
+    setAmount(val);
   };
 
   const retryPayment = () => {
@@ -59,6 +47,7 @@ export default function Pay() {
     currency: "ZAR",
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const initializePayment = usePaystackPayment(config);
 
@@ -98,6 +87,8 @@ export default function Pay() {
   };
 
   const handleClick = () => {
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     initializePayment(onSuccess, onClose);
   };
