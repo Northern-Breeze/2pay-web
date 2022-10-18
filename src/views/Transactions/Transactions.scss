@@ -1,0 +1,15 @@
+.transaction-wrapper {
+    .row {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        .empty-list {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+    }
+}

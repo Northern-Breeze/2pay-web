@@ -41,10 +41,15 @@ export default function Pay() {
 
   const config = {
     reference: new Date().getTime().toString(),
-    email: location.state.email,
+    email: location.state.profile.email,
     amount: amount * 100,
     publicKey: configs.PAY_STACK_PUBLIC,
     currency: "ZAR",
+    firstname: location.state.profile.firstName,
+    lastname: location.state.profile.lastName,
+    metadata: {
+      avatar: location.state.profile.avatar
+    }
   };
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

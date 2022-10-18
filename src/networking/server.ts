@@ -128,6 +128,10 @@ class Server {
   static getNotification() {
     return Axios.get("/users/notifications");
   }
+
+  static getTransactions () {
+    return Axios.get('/users/transactions')
+  }
 }
 
 export default Server;

@@ -13,11 +13,17 @@ interface Props {
     id: number;
     email: string;
   };
+  profile: {
+    firstName: string;
+    lastName: string;
+    avatar: string;
+    email: string;
+  };
   isLocal: boolean;
 }
 
 export default function Article(props: Props) {
-  const { item } = props;
+  const { item, profile } = props;
   const navigate = useNavigate();
 
   return (
@@ -29,7 +35,7 @@ export default function Article(props: Props) {
             userId: item.id,
             firstName: item.first_name,
             lastName: item.last_name,
-            email: item.email,
+            profile: profile,
             avatar: item.avatar,
             sessionId: Math.random(),
           },

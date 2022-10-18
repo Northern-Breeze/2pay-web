@@ -4,6 +4,8 @@ import TemplateWrapper from "../Template";
 import "./Search.scss";
 import Server from "../../networking/server";
 import Card from "../../components/Card";
+import { useStoreState } from "easy-peasy";
+import { Model } from "../../store/model";
 
 type User = {
   first_name: string;
@@ -17,6 +19,7 @@ type User = {
 export default function Search() {
   const [search, setSearch] = React.useState("");
   const [users, setUsers] = React.useState<User[]>();
+  const profile = useStoreState<Model>((state) => state.profile)
   // refs
   const mounted = React.useRef(true);
 
@@ -71,7 +74,7 @@ export default function Search() {
             {!users
               ? "Loading ..."
               : users.map((item, index) => (
-                  <Card key={index + "-key"} item={item} isLocal={false} />
+                  <Card key={index + "-key"} item={item} isLocal={false} profile={profile} />
                 ))}
           </div>
         </div>
