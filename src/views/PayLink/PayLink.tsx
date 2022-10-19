@@ -26,7 +26,9 @@ export default function PayLink() {
     setAmount(val);
   };
 
-  const retryPayment = () => {};
+  const retryPayment = () => {
+    console.log('Something')
+  };
 
   const copyClipBoard = () => {
     navigator.clipboard.writeText(paylink);
@@ -46,6 +48,7 @@ export default function PayLink() {
         });
         return;
       }
+      setServerState('LOADING');
       const currency = "ZAR";
       const response = await Server.getPaymentLink(
         profile.email,
@@ -57,15 +60,18 @@ export default function PayLink() {
         Notification.error({
           message: response.data.message,
         });
+        setServerState('ERROR');
       } else {
         setLink(response.data.data);
         setModalOpen(true);
+        setServerState('IDLE');
         Notification.success({
           message: "Successfully create a payment link",
         });
       }
     } catch (error) {
       console.log(error);
+      setServerState('ERROR');
       Notification.error({
         message: "Something went wrong, please try again later",
       });
