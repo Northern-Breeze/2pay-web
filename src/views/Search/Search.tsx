@@ -18,20 +18,29 @@ type User = {
 
 export default function Search() {
   const [search, setSearch] = React.useState("");
-  const [users, setUsers] = React.useState<User[]>();
+  const [placeholder, setPlaceHolder] = React.useState<User[]>([])
+  const [users, setUsers] = React.useState<User[]>([]);
   const profile = useStoreState<Model>((state) => state.profile)
   // refs
   const mounted = React.useRef(true);
 
   const handleSearch = (data: string): void => {
+    if (data.length === 0) {
+      setPlaceHolder(users);
+    } else {
+      const val = data.toLowerCase()
+      const results = users.filter((i) => i.first_name.toLowerCase().indexOf(val) > -1 || i.last_name.toLowerCase().indexOf(val) > -1);
+      setPlaceHolder(results);
+    }
     setSearch(data);
   };
 
-  const fetchUsers = async () => {
+  const fetchUsers = React.useCallback(async () => {
     try {
       const response = await Server.fetchUser();
       if (response.data.success) {
         setUsers(response.data.data);
+        setPlaceHolder(response.data.data)
       } else {
         Notification.error({
           message: response.data.message,
@@ -43,7 +52,7 @@ export default function Search() {
         message: "Something went wrong, please try again later",
       });
     }
-  };
+  },[]);
 
   React.useEffect(() => {
     fetchUsers();
@@ -73,7 +82,7 @@ export default function Search() {
           <div className="cards">
             {!users
               ? "Loading ..."
-              : users.map((item, index) => (
+              : placeholder.map((item, index) => (
                   <Card key={index + "-key"} item={item} isLocal={false} profile={profile} />
                 ))}
           </div>

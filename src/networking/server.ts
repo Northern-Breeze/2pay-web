@@ -132,6 +132,14 @@ class Server {
   static getTransactions () {
     return Axios.get('/users/transactions')
   }
+  static getPaymentLink(email: string, amount: number, currency: string, callbackUrl: string) {
+    return Axios.post('/transaction/create/link', {
+      email,
+      amount,
+      currency,
+      callbackUrl,
+    })
+  }
 }
 
 export default Server;

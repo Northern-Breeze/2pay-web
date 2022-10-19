@@ -20,6 +20,9 @@ export default function Home() {
       case "search":
         navigate("search");
         break;
+      case "link":
+        navigate("get-payment-link");
+        break;
       default:
         break;
     }
@@ -60,7 +63,13 @@ export default function Home() {
             </div>
             <div className="header">Get Paid Scan</div>
           </div>
-          <div className="card" style={{ width: "18rem" }}>
+          <div
+            className="card"
+            style={{ width: "18rem" }}
+            onClick={() => {
+              handleClick("link");
+            }}
+          >
             <div>
               <LinkOutlined style={{ fontSize: 60 }} className="icon" />
             </div>

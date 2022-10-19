@@ -1,3 +1,5 @@
+@import '../../scss/utils';
+
 .profile-container {
     display: flex;
     justify-content: center;
@@ -5,7 +7,11 @@
     align-items: center;
     flex-direction: row;
     .image-container {
+        border: 6px solid $primary-color;
+        border-radius: 50%;
         .image {
+            width: 400px;
+            height: 400px;
             border-radius: 50%;
         }
     }
