@@ -23,6 +23,9 @@ export default function Home() {
       case "link":
         navigate("get-payment-link");
         break;
+      case "qrcode":
+        navigate("get-qr-code");
+        break;
       default:
         break;
     }
@@ -57,7 +60,13 @@ export default function Home() {
           </div>
         </div>
         <div className="row">
-          <div className="card" style={{ width: "18rem" }}>
+          <div
+            className="card"
+            style={{ width: "18rem" }}
+            onClick={() => {
+              handleClick("qrcode");
+            }}
+          >
             <div>
               <QrcodeOutlined style={{ fontSize: 60 }} className="icon" />
             </div>

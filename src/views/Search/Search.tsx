@@ -37,7 +37,7 @@ export default function Search() {
 
   const fetchUsers = React.useCallback(async () => {
     try {
-      const response = await Server.fetchUser();
+      const response = await Server.Users.fetchUser();
       if (response.data.success) {
         setUsers(response.data.data);
         setPlaceHolder(response.data.data)

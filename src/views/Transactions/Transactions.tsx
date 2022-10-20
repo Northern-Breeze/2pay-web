@@ -18,7 +18,7 @@ export default function Transactions() {
   const fetchTransactions = React.useCallback(async () => {
     try {
       setServerState("LOADING");
-      const response = await Server.getTransactions();
+      const response = await Server.Users.getTransactions();
       if (!response.data.success) {
         setServerState("ERROR");
         Notification.error({

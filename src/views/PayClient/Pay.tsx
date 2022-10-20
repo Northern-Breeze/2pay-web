@@ -61,7 +61,7 @@ export default function Pay() {
       try {
         setServerStates("LOADING");
         const { reference: token } = reference;
-        const response = await Server.verifyPayment({
+        const response = await Server.Transactions.verifyPayment({
           token,
           id: location.state.userId,
           source: 'PAYSTACK'

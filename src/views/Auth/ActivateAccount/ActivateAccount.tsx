@@ -21,7 +21,7 @@ export default function ActivateAccount() {
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
       setLoading(true);
-      const response = await Server.verifyAccount(data.activate);
+      const response = await Server.Auth.verifyAccount(data.activate);
       if (!response.data.success) {
         setLoading(false);
         Notification.error({

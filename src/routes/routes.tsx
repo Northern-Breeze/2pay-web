@@ -15,6 +15,7 @@ import Profile from "../views/Profile";
 import Edit from "../views/Profile/Edit";
 import Transactions from "../views/Transactions";
 import PayLink from "../views/PayLink";
+import QRCode from "../views/QRCode";
 
 export default function AppRouter() {
   return (
@@ -31,6 +32,7 @@ export default function AppRouter() {
         <Route path="/help" element={<PrivateRoutes component={Help} />} />
         <Route path="/profile" element={<PrivateRoutes component={Profile} />} />
         <Route path="/profile/edit" element={<PrivateRoutes component={Edit} />} />
+        <Route path="/get-qr-code" element={<QRCode />} />
         <Route path="/get-payment-link" element={<PayLink />} />
         <Route
           path="/transactions"

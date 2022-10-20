@@ -50,7 +50,7 @@ export default function PayLink() {
       }
       setServerState('LOADING');
       const currency = "ZAR";
-      const response = await Server.getPaymentLink(
+      const response = await Server.Transactions.getPaymentLink(
         profile.email,
         amount,
         currency,

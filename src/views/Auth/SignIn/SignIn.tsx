@@ -26,7 +26,7 @@ export default function SignIn() {
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
       setLoading(true);
-      const response = await Server.signInUser({
+      const response = await Server.Auth.signInUser({
         email: data.email,
         password: data.password,
       });

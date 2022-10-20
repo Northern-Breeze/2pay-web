@@ -31,7 +31,7 @@ export default function Notifications() {
   const fetchNotifications = React.useCallback(async () => {
     try {
       setServerState('LOADING');
-      const response = await Server.getNotification();
+      const response = await Server.Users.getNotification();
       if (!response.data.success) {
         setServerState('ERROR');
         Notification.error({

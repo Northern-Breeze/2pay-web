@@ -27,7 +27,7 @@ export default function SingUp() {
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
       setLoading(true);
-      const response = await Server.registerUser({
+      const response = await Server.Auth.registerUser({
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
