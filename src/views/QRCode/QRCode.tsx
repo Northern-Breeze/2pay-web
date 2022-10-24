@@ -14,6 +14,9 @@ export default function QRCode() {
   const [serverState, setServerState] = React.useState<SERVER_STATE>("IDLE");
   const [amount, setAmount] = React.useState<number>(0);
   const [image, setImage] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value as unknown as number;
     setAmount(val);
@@ -25,7 +28,7 @@ export default function QRCode() {
 
   const handleClick = async () => {
     try {
-      if (amount < 100) {
+      if (amount < 5) {
         Notification.info({
           message: "Please create a charge with a positive value",
         });
@@ -63,11 +66,41 @@ export default function QRCode() {
       <div className="qrcode-container">
         <div className="pay-link-container">
           {serverState === "IDLE" && (
-            <div>
+            <>
               <div className="header">
-                Enter the amount you would want to include in the QR Code
+                Fill in the information so we can create a payment/invoice link
               </div>
-              <div>
+              <div className="form-group">
+                <label>First Name</label>
+                <input
+                  name="firstName"
+                  placeholder="First Name"
+                  value={firstName}
+                  className="form-control"
+                  onChange={(val) => setFirstName(val.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Last Name</label>
+                <input
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={lastName}
+                  className="form-control"
+                  onChange={(val) => setLastName(val.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  className="form-control"
+                  onChange={(val) => setEmail(val.target.value)}
+                />
+              </div>
+              <div className="form-group">
                 <div className="amount-enter">
                   <div className="input-group mb-3">
                     <span className="input-group-text">ZAR</span>
@@ -83,11 +116,14 @@ export default function QRCode() {
                 </div>
               </div>
               <div className="d-grid gap-2">
-                <Button type="primary" clickHandler={handleClick} size="large">
-                  GENERATE QR CODE
-                </Button>
+                <button
+                  className="btn btn-primary btn-lg"
+                  onClick={handleClick}
+                >
+                  GENERATE LINK
+                </button>
               </div>
-            </div>
+            </>
           )}
           {serverState === "LOADING" && (
             <div className="loader">
@@ -106,7 +142,11 @@ export default function QRCode() {
             <div className="scan-qrcode-image">
               <div className="header">Scan the QR Code bellow</div>
               <div>
-                <img className="qrc-code-image" src={image} alt="QR code image" />
+                <img
+                  className="qrc-code-image"
+                  src={image}
+                  alt="QR code image"
+                />
               </div>
             </div>
           )}

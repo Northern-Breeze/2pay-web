@@ -2,7 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
+  .header {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .form-group {
+    padding: 3px;
+  }
+  .btn.btn-primary {
+    width: 400px;
+  }
 }
 .ant-modal-body {
   height: 200px;

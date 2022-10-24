@@ -16,6 +16,10 @@ type SERVER_STATE = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 
 export default function PayLink() {
   const [serverState, setServerState] = React.useState<SERVER_STATE>("IDLE");
+  const [email, setEmail] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+
   const [amount, setAmount] = React.useState<number>(0);
   const [paylink, setLink] = React.useState("");
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -27,31 +31,34 @@ export default function PayLink() {
   };
 
   const retryPayment = () => {
-    console.log('Something')
+    console.log("Something");
   };
 
   const copyClipBoard = () => {
     navigator.clipboard.writeText(paylink);
     Notification.success({
-      message: 'Link copied to clipboard successfully'
-    })
+      message: "Link copied to clipboard successfully",
+    });
     setModalOpen(false);
-  }
+  };
 
   const getUrl = () => "http://localhost:5173";
 
   const handleClick = async () => {
     try {
-      if (amount < 100) {
+      if (amount < 5) {
         Notification.info({
-          message: "Please create a charge with a positive value",
+          message:
+            "The amount that can be included in the link must be greater than 5",
         });
         return;
       }
-      setServerState('LOADING');
+      setServerState("LOADING");
       const currency = "ZAR";
       const response = await Server.Transactions.getPaymentLink(
-        profile.email,
+        email,
+        firstName,
+        lastName,
         amount,
         currency,
         getUrl()
@@ -60,18 +67,18 @@ export default function PayLink() {
         Notification.error({
           message: response.data.message,
         });
-        setServerState('ERROR');
+        setServerState("ERROR");
       } else {
         setLink(response.data.data);
         setModalOpen(true);
-        setServerState('IDLE');
+        setServerState("IDLE");
         Notification.success({
           message: "Successfully create a payment link",
         });
       }
     } catch (error) {
       console.log(error);
-      setServerState('ERROR');
+      setServerState("ERROR");
       Notification.error({
         message: "Something went wrong, please try again later",
       });
@@ -81,11 +88,41 @@ export default function PayLink() {
     <TemplateWrapper defaultIndex="1">
       <div className="pay-link-container">
         {serverState === "IDLE" && (
-          <div>
+          <>
             <div className="header">
-              Enter the amount you would want to include in the link
+              Fill in the information so we can create a payment/invoice link
             </div>
-            <div>
+            <div className="form-group">
+              <label>First Name</label>
+              <input
+                name="firstName"
+                placeholder="First Name"
+                value={firstName}
+                className="form-control"
+                onChange={(val) => setFirstName(val.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Last Name</label>
+              <input
+                name="lastName"
+                placeholder="Last Name"
+                value={lastName}
+                className="form-control"
+                onChange={(val) => setLastName(val.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                name="email"
+                placeholder="Email"
+                value={email}
+                className="form-control"
+                onChange={(val) => setEmail(val.target.value)}
+              />
+            </div>
+            <div className="form-group">
               <div className="amount-enter">
                 <div className="input-group mb-3">
                   <span className="input-group-text">ZAR</span>
@@ -101,11 +138,11 @@ export default function PayLink() {
               </div>
             </div>
             <div className="d-grid gap-2">
-              <Button type="primary" clickHandler={handleClick} size="large">
+              <button className="btn btn-primary btn-lg" onClick={handleClick}>
                 GENERATE LINK
-              </Button>
+              </button>
             </div>
-          </div>
+          </>
         )}
         {serverState === "LOADING" && (
           <div className="loader">

@@ -10,12 +10,16 @@ export class Transactions {
   }
   static getPaymentLink(
     email: string,
+    firstName: string,
+    lastName: string,
     amount: number,
     currency: string,
     callbackUrl: string
   ) {
     return Axios.post("/transaction/create/link", {
       email,
+      firstName,
+      lastName,
       amount,
       currency,
       callbackUrl,
