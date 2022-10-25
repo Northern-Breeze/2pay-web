@@ -17,6 +17,7 @@ export default function QRCode() {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
+
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value as unknown as number;
     setAmount(val);
@@ -37,6 +38,9 @@ export default function QRCode() {
       setServerState("LOADING");
       const currency = "ZAR";
       const response = await Server.Transactions.generateQRCode({
+        firstName,
+        lastName,
+        email,
         amount,
         currency,
       });
