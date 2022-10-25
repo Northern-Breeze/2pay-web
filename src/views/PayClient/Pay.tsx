@@ -48,7 +48,18 @@ export default function Pay() {
     firstname: location.state.profile.firstName,
     lastname: location.state.profile.lastName,
     metadata: {
-      avatar: location.state.profile.avatar
+      payer: {
+        firstName: location.state.profile.firstName,
+        lastName: location.state.profile.lastName,
+        email: location.state.profile.email,
+        avatar: location.state.profile.avatar
+      },
+      payee: {
+        email: location.state.email,
+        firstName: location.state.firstName,
+        lastName: location.state.lastName,
+        avatar: location.state.avatar
+      }
     }
   };
 
