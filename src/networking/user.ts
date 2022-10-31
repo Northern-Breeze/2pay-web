@@ -10,9 +10,10 @@ export class Users {
   static getTransactions() {
     return Axios.get("/users/transactions");
   }
-  static updateProfile(data: any) {
-    return Axios.put("/user/update", {
-      ...data,
+  static updateProfile(data: { firstName: string, lastName: string }) {
+    return Axios.put("/users/update", {
+      firstName: data.firstName,
+      lastName: data.lastName,
     });
   }
 }
