@@ -1,1 +1,1 @@
-# Payfona 
+# 2pay 
