@@ -20,6 +20,7 @@
     "easy-peasy": "^5.1.0",
     "prettier": "^2.7.1",
     "qr-scanner": "^1.4.1",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-country-flag": "^3.0.2",
     "react-dom": "^18.2.0",

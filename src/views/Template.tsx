@@ -16,6 +16,8 @@ import {
 } from "@ant-design/icons";
 
 import "./Template.scss";
+import { useStoreState } from "easy-peasy";
+import { Model } from "../store/model";
 
 const { Header, Sider, Content } = Layout;
 
@@ -28,6 +30,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
   const { children, defaultIndex } = props;
   const [collapsed, setCollapsed] = React.useState(false);
   const [isOnline, setOnline] = React.useState(true);
+  const profile = useStoreState<Model>((state) => state.profile);
 
   const navigate = useNavigate();
   const toggleNav = () => {
@@ -60,7 +63,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
       >
         <div className="logo">
           <img
-            src="https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4"
+            src={profile.avatar}
             className="brand-logo"
             alt="Northern Breeze"
           />

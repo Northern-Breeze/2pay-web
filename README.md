@@ -1,1 +1,1 @@
-# tipper-app-web
+# Kash Wallet
