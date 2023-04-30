@@ -103,7 +103,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
               navigate("/about");
             }}
           >
-            About 2tip
+            About Kashwallet
           </Menu.Item>
           <Menu.Item
             key="5"
