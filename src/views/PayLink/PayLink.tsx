@@ -23,6 +23,7 @@ export default function PayLink() {
   const [amount, setAmount] = React.useState<number>(0);
   const [paylink, setLink] = React.useState("");
   const [modalOpen, setModalOpen] = React.useState(false);
+  
   const profile = useStoreState<Model>((state) => state.profile);
 
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {

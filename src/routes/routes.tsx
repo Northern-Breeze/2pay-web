@@ -16,6 +16,8 @@ import Edit from "../views/Profile/Edit";
 import Transactions from "../views/Transactions";
 import PayLink from "../views/PayLink";
 import QRCode from "../views/QRCode";
+import Invoice from "../views/Invoice";
+import PayView from "../views/PayView";
 
 export default function AppRouter() {
   return (
@@ -38,6 +40,8 @@ export default function AppRouter() {
           path="/transactions"
           element={<PrivateRoutes component={Transactions} />}
         />
+        <Route path="/view_invoice" element={<Invoice />} />
+        <Route path="/invoice/pay-now" element={<PayView />} />
       </Routes>
     </Router>
   );

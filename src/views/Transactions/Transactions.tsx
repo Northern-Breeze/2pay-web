@@ -53,7 +53,7 @@ export default function Transactions() {
                 <Empty />
               </div>
             )) ||
-              trans.map((i) => <Transaction key={i.id} payload={i} />))}
+              trans.map((i, index) => <Transaction key={'key-' + index} payload={i} />))}
           {serverState === "ERROR" && (
             <Error message="Failed to load transactions" />
           )}

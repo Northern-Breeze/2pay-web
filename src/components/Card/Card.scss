@@ -14,14 +14,18 @@
   .header {
     color: #fff;
   }
-  img {
-    max-width: 80%;
-    min-height: 80%;
+  .user-image {
+    max-width: 100%;
+    min-height: 100%;
+    width: 300px;
+    margin: 0px;
+    right: 12px;
+    position: relative;
     object-fit: cover;
     display: block;
-    clip-path: polygon(-4px -4px, 100.4% -3px, 91.2% 102.57%, -0.8% 102.97%);
+    border-radius: 5px 0px 0px 5px;
   }
-
+  
   .card-details {
     padding: 1.5rem;
     font-family: $font-family;
