@@ -1,39 +1,36 @@
 import { action, Action } from "easy-peasy";
 
+export interface Account {
+  id: number;
+  name: string;
+  accountNumber: string;
+  isDefault: boolean;
+}
+
+export interface Profile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  fullName: string;
+  avatar: string;
+  accounts: Account[];
+}
 export interface Model {
-  profile: {
-    fullName: string;
-    lastName: string;
-    firstName: string;
-    email: string;
-    avatar: string;
-  };
+  profile: Profile;
   token: string;
   isAuth: boolean;
   saveToken: Action<
     this,
     {
       token: string;
-      profile: {
-        fullName: string;
-        lastName: string;
-        firstName: string;
-        email: string;
-        avatar: string;
-      };
+      profile: Profile;
     }
   >;
   logOut: Action<this>;
   updateProfile: Action<
     this,
     {
-      profile: {
-        firstName: string;
-        lastName: string;
-        fullName: string;
-        avatar: string;
-        email: string;
-      };
+      profile: Profile;
     }
   >;
   updateAvatar: Action<this, { avatar: string }>;
@@ -46,6 +43,7 @@ const model: Model = {
     fullName: "",
     avatar: "",
     email: "",
+    accounts: []
   },
   token: "",
   isAuth: false,

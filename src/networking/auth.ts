@@ -6,7 +6,7 @@ export class Auth {
     });
   }
   static updatePassword(password: string, token: string) {
-    return Axios.put("/auth/update_password", {
+    return Axios.post("/auth/update_password", {
       password,
       token,
     });

@@ -69,6 +69,11 @@ export default function SignIn() {
               value="email"
             />
           </div>
+          <div className="forgot-password">
+            <Link to="/forgot-password" className="link">
+             Forgot password?
+            </Link>
+          </div>
           <div className="form-group">
             <Input
               label="Password"

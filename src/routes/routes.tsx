@@ -16,6 +16,9 @@ import Edit from "../views/Profile/Edit";
 import Transactions from "../views/Transactions";
 import PayLink from "../views/PayLink";
 import QRCode from "../views/QRCode";
+import ForgotPassword from "../views/Auth/ForgotPassword/ForgotPassword";
+import ChangePassword from "../views/Auth/ChangePassword/ChangePassword";
+import Accounts from "../views/Accounts/Accounts";
 
 export default function AppRouter() {
   return (
@@ -27,7 +30,10 @@ export default function AppRouter() {
         <Route path="/about" element={<About />} />
         <Route path="/scan" element={<Scan />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/search" element={<PrivateRoutes component={Search} />} />
+        <Route path="/accounts" element={<PrivateRoutes component={Accounts} />} />
         <Route path="/pay" element={<PrivateRoutes component={Pay} />} />
         <Route path="/help" element={<PrivateRoutes component={Help} />} />
         <Route path="/profile" element={<PrivateRoutes component={Profile} />} />
