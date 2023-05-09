@@ -2,15 +2,19 @@ import * as React from "react";
 import Notification from "antd/es/notification";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import "./SignUp.scss";
+
+
 import Server from "../../../networking/server";
 import Input from "../../../components/common/Input";
+
+import "./SignUp.scss";
 
 type Inputs = {
   lastName: string;
   firstName: string;
   email: string;
   password: string;
+  phoneNumber: string
 };
 
 export default function SingUp() {
@@ -32,6 +36,7 @@ export default function SingUp() {
         lastName: data.lastName,
         email: data.email,
         password: data.password,
+        phoneNumber: data.phoneNumber
       });
       if (!response.data.success) {
         Notification.error({
@@ -90,6 +95,17 @@ export default function SingUp() {
               type="email"
               placeholder="Email"
               value="email"
+            />
+          </div>
+          <div className="form-group">
+            <Input
+                label="Phone Number"
+                register={register}
+                required
+                errors={errors}
+                type="text"
+                placeholder="Phone Number"
+                value="phoneNumber"
             />
           </div>
           <div className="form-group">

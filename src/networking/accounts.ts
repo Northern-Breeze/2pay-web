@@ -11,4 +11,13 @@ export class Accounts {
     static deleteAccount(id: number) {
         return Axios.delete(`/account/${id}`);
     }
+    static fetchVerifiedAccounts() {
+        return Axios.get('/account/external-verified')
+    }
+    static linkAccount(data: { bankCode: string, accountNumber: string }) {
+        return Axios.post('/account', {
+            bankCode: data.bankCode,
+            accountNumber: data.accountNumber
+        })
+    }
 }

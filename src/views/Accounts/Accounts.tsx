@@ -1,9 +1,8 @@
 import * as React from "react";
-import { useStoreState } from "easy-peasy";
 import Notification from "antd/es/notification";
 import { useNavigate } from "react-router-dom";
 
-import { Model, Account } from "../../store/model";
+import { Account } from "../../store/model";
 import TemplateWrapper from "../Template";
 
 import AccountList from "./AccountList/AccountList";
@@ -16,7 +15,7 @@ type STATES = "LOADING" | "IDLE" | "ERROR";
 
 export default function Accounts() {
   const [SERVER_STATE, setServerState] = React.useState<STATES>("LOADING");
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [_, setIsOpen] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ export default function Accounts() {
     accountNumber: string;
   }>();
   const [accounts, setAccounts] = React.useState<Account[]>([]);
-  const token: string = useStoreState<Model>((state) => state.token);
 
   const handleOptions = (isDefault: boolean, id: number) => {
     const options = accounts.filter((account) => account.id === id)[0];
@@ -120,17 +118,17 @@ export default function Accounts() {
   };
 
   const linkBankAccount = () => {
-    navigate("/accounts/link");
+    navigate("/accounts/link-account");
   };
 
   const updateBankAccount = () => {
-    navigate("/accounts/update");
+    navigate("/accounts/update-account");
   };
   React.useEffect(() => {
     fetchAccounts();
   }, []);
   return (
-    <TemplateWrapper defaultIndex="8">
+    <TemplateWrapper defaultIndex="7">
       <div className="link-accounts-container">
         {SERVER_STATE === "LOADING" && <div className="loading">LOADING</div>}
         {SERVER_STATE === "ERROR" && <div className="error">ERROR</div>}
@@ -139,8 +137,8 @@ export default function Accounts() {
             {accounts.length === 0 && (
               <div className="action-buttons">
                 <div>
-                  <button className="btn btn-primary">Link Account</button>
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary" onClick={linkBankAccount}>Link Account</button>
+                  <button className="btn btn-primary" onClick={updateBankAccount}>
                     Update Bank Account
                   </button>
                 </div>
