@@ -53,7 +53,7 @@ export default function Transaction(props: Props) {
             <span>{currency}</span>
           </div>
           <div className="amount-container">
-            <span>{amount / 100}.00</span>
+            <span>{amount / 100}</span>
           </div>
         </div>
       </div>

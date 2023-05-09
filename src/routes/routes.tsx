@@ -20,6 +20,8 @@ import ForgotPassword from "../views/Auth/ForgotPassword/ForgotPassword";
 import ChangePassword from "../views/Auth/ChangePassword/ChangePassword";
 import Accounts from "../views/Accounts/Accounts";
 import LinkAccount from "../views/Accounts/LinkAccount/LinkAccount";
+import Invoice from "../views/Invoice";
+import PayView from "../views/PayView";
 
 export default function AppRouter() {
   return (
@@ -50,6 +52,8 @@ export default function AppRouter() {
           path="/transactions"
           element={<PrivateRoutes component={Transactions} />}
         />
+        <Route path="/view_invoice" element={<Invoice />} />
+        <Route path="/invoice/pay-now" element={<PayView />} />
       </Routes>
     </Router>
   );

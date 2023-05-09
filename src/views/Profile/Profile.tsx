@@ -32,7 +32,14 @@ export default function Profile() {
           </div>
           <div className="edit-container">
             <Button type="primary" clickHandler={() => {
-                navigate('/profile/edit');
+                navigate('/profile/edit', {
+                  state: {
+                    firstName: profile.firstName,
+                    lastName: profile.lastName,
+                    avatar: profile.avatar,
+                    email: profile.email,
+                  }
+                });
             }}>
               Update Profile
             </Button>

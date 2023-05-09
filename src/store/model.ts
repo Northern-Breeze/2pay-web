@@ -1,20 +1,19 @@
 import { action, Action } from "easy-peasy";
 
+
 export interface Account {
-  id: number;
   name: string;
-  accountNumber: string;
-  isDefault: boolean;
+  address: string;
+}
+export interface Profile {
+  firstName: string,
+  lastName: string,
+  fullName: string,
+  avatar: string,
+  email: string,
+  accounts: Account[]
 }
 
-export interface Profile {
-  firstName: string;
-  lastName: string;
-  email: string;
-  fullName: string;
-  avatar: string;
-  accounts: Account[];
-}
 export interface Model {
   profile: Profile;
   token: string;
@@ -29,8 +28,12 @@ export interface Model {
   logOut: Action<this>;
   updateProfile: Action<
     this,
-    {
-      profile: Profile;
+    {   type: 'NAMES' | 'PROFILE'
+        firstName: string;
+        lastName: string;
+        fullName: string;
+        avatar: string;
+        email: string;
     }
   >;
   updateAvatar: Action<this, { avatar: string }>;
@@ -60,7 +63,17 @@ const model: Model = {
   }),
   updateProfile: action((state, payload) => {
     const oldState = state;
-    oldState.profile = payload.profile;
+    switch (payload.type) {
+      case 'NAMES':        
+          oldState.profile.firstName = payload.firstName;
+          oldState.profile.lastName = payload.lastName;
+        break;
+      case 'PROFILE':
+        oldState.profile.avatar = payload.avatar
+        break;
+      default:
+        break;
+    }
   }),
   updateAvatar: action((state, payload) => {
     const oldState = state;

@@ -1,1 +1,2 @@
-# 2pay 
+# Kash Wallet
+
