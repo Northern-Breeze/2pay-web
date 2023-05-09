@@ -10,6 +10,14 @@
   .header {
     font-size: 30px;
   }
+  .forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    .link {
+      color: $primary-color;
+      font-size: 1rem;
+    }
+  }
 
   .input-group {
     .form-control {

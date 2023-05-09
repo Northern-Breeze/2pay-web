@@ -6,7 +6,7 @@ export class Auth {
     });
   }
   static updatePassword(password: string, token: string) {
-    return Axios.put("/auth/update_password", {
+    return Axios.post("/auth/update_password", {
       password,
       token,
     });
@@ -29,13 +29,15 @@ export class Auth {
     lastName: string;
     email: string;
     password: string;
+    phoneNumber: string
   }) {
-    const { firstName, lastName, email, password } = data;
+    const { firstName, lastName, email, password, phoneNumber } = data;
     return Axios.post("/auth/register", {
       firstName,
       lastName,
       email,
       password,
+      phoneNumber
     });
   }
   static updateImage(uri: string, name: string, token: string) {

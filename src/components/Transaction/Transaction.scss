@@ -2,22 +2,26 @@
 
 .transaction-container {
     display: flex;
+    flex-direction: row;
     background: $primary-color;
     margin: 10px;
     border-radius: 10px;
     width: 900px !important;
     height: 300px;
     color: #fff;
-    .user-image {
-        max-width: 100%;
-        min-height: 100%;
-        width: 300px;
-        margin: 0px;
-        right: 12px;
-        position: relative;
-        object-fit: cover;
-        display: block;
-        border-radius: 5px 0px 0px 5px;
+    height: 300px;
+    .image-container {
+        height: 300px;
+        .user-image {
+            height: inherit;
+            width: 300px;
+            margin: 0px;
+            right: 12px;
+            position: relative;
+            object-fit: cover;
+            display: block;
+            border-radius: 5px 0px 0px 5px;
+        }
     }
     .name {
         font-size: 30px;

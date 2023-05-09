@@ -16,6 +16,10 @@ import Edit from "../views/Profile/Edit";
 import Transactions from "../views/Transactions";
 import PayLink from "../views/PayLink";
 import QRCode from "../views/QRCode";
+import ForgotPassword from "../views/Auth/ForgotPassword/ForgotPassword";
+import ChangePassword from "../views/Auth/ChangePassword/ChangePassword";
+import Accounts from "../views/Accounts/Accounts";
+import LinkAccount from "../views/Accounts/LinkAccount/LinkAccount";
 import Invoice from "../views/Invoice";
 import PayView from "../views/PayView";
 
@@ -29,9 +33,17 @@ export default function AppRouter() {
         <Route path="/about" element={<About />} />
         <Route path="/scan" element={<Scan />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/search" element={<PrivateRoutes component={Search} />} />
+        
+        {/** Account */}
+        <Route path="/accounts" element={<PrivateRoutes component={Accounts} />} />
+        <Route path="/accounts/link-account" element={<PrivateRoutes component={LinkAccount} />} />
+        
         <Route path="/pay" element={<PrivateRoutes component={Pay} />} />
         <Route path="/help" element={<PrivateRoutes component={Help} />} />
+        {/* Prifile */}
         <Route path="/profile" element={<PrivateRoutes component={Profile} />} />
         <Route path="/profile/edit" element={<PrivateRoutes component={Edit} />} />
         <Route path="/get-qr-code" element={<QRCode />} />

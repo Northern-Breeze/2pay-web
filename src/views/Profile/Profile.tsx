@@ -12,7 +12,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const profile = useStoreState<Model>((state) => state.profile);
   return (
-    <TemplateWrapper defaultIndex="7">
+    <TemplateWrapper defaultIndex="8">
       <div className="profile-container">
         <div className="container-container">
           <div className="image-container">

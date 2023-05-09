@@ -1,26 +1,28 @@
 import { action, Action } from "easy-peasy";
 
+
+export interface Account {
+  name: string;
+  address: string;
+}
+export interface Profile {
+  firstName: string,
+  lastName: string,
+  fullName: string,
+  avatar: string,
+  email: string,
+  accounts: Account[]
+}
+
 export interface Model {
-  profile: {
-    fullName: string;
-    lastName: string;
-    firstName: string;
-    email: string;
-    avatar: string;
-  };
+  profile: Profile;
   token: string;
   isAuth: boolean;
   saveToken: Action<
     this,
     {
       token: string;
-      profile: {
-        fullName: string;
-        lastName: string;
-        firstName: string;
-        email: string;
-        avatar: string;
-      };
+      profile: Profile;
     }
   >;
   logOut: Action<this>;
@@ -44,6 +46,7 @@ const model: Model = {
     fullName: "",
     avatar: "",
     email: "",
+    accounts: []
   },
   token: "",
   isAuth: false,

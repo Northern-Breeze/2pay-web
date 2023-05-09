@@ -98,6 +98,11 @@ export default function SignIn() {
               <div className="invalid-feedback">{errors.email.message}</div>
             )}
           </div>
+          <div className="forgot-password">
+            <Link to="/forgot-password" className="link">
+             Forgot password?
+            </Link>
+          </div>
           <div className="form-group">
             <label htmlFor="password" className="label">
               Password

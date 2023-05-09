@@ -87,7 +87,7 @@ export default function Edit() {
   };
 
   return (
-    <TemplateWrapper defaultIndex="7">
+    <TemplateWrapper defaultIndex="8">
       <div className="profile-container-edit">
         <div className="container-container">
           <div className="image-container">

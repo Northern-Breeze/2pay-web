@@ -13,6 +13,7 @@ import {
   HomeOutlined,
   ScanOutlined,
   InfoCircleOutlined,
+  BankOutlined
 } from "@ant-design/icons";
 
 import "./Template.scss";
@@ -125,6 +126,15 @@ export default function TemplateWrapper(props: Props): JSX.Element {
           </Menu.Item>
           <Menu.Item
             key="7"
+            icon={<BankOutlined />}
+            onClick={() => {
+              navigate("/accounts");
+            }}
+          >
+            Bank Accounts
+          </Menu.Item>
+          <Menu.Item
+            key="8"
             icon={<UserOutlined />}
             onClick={() => {
               navigate("/profile");
@@ -133,7 +143,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             Profile
           </Menu.Item>
           <Menu.Item
-            key="8"
+            key="9"
             icon={<LogoutOutlined />}
             onClick={() => {
               localStorage.clear();

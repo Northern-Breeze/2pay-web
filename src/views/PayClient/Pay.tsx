@@ -1,15 +1,18 @@
 import * as React from "react";
 import { usePaystackPayment } from "react-paystack";
 import { useLocation, useNavigate } from "react-router-dom";
+import CurrencyInput from "react-currency-input-field";
+
 import Button from "../../components/common/Button/Button";
 import TemplateWrapper from "../Template";
 import configs from "../../configs/config";
 import Notification from "antd/es/notification";
 
-import "./Pay.scss";
 import Server from "../../networking/server";
 import Loading from "../../components/Loading";
 import ThankYou from "../../components/ThankYou";
+
+import "./Pay.scss";
 
 type Reference = {
   message: string;
@@ -25,8 +28,7 @@ type SERVER_STATE = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 
 export default function Pay() {
   const [amount, setAmount] = React.useState(0);
-  const [serverState, setServerStates] =
-    React.useState<SERVER_STATE>("IDLE");
+  const [serverState, setServerStates] = React.useState<SERVER_STATE>("IDLE");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,15 +54,15 @@ export default function Pay() {
         firstName: location.state.profile.firstName,
         lastName: location.state.profile.lastName,
         email: location.state.profile.email,
-        avatar: location.state.profile.avatar
+        avatar: location.state.profile.avatar,
       },
       payee: {
         email: location.state.email,
         firstName: location.state.firstName,
         lastName: location.state.lastName,
-        avatar: location.state.avatar
-      }
-    }
+        avatar: location.state.avatar,
+      },
+    },
   };
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -75,7 +77,7 @@ export default function Pay() {
         const response = await Server.Transactions.verifyPayment({
           token,
           id: location.state.userId,
-          source: 'PAYSTACK'
+          source: "PAYSTACK",
         });
         if (!response.data.success) {
           setServerStates("ERROR");
@@ -103,7 +105,6 @@ export default function Pay() {
   };
 
   const handleClick = () => {
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     initializePayment(onSuccess, onClose);
@@ -129,17 +130,18 @@ export default function Pay() {
             </div>
             <div>
               <div className="amount-enter">
-                <div className="input-group mb-3">
-                  <span className="input-group-text">ZAR</span>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={amount}
-                    onChange={handleAmount}
-                    aria-label="Amount (to the nearest dollar)"
-                  />
-                  <span className="input-group-text">.00</span>
-                </div>
+                <CurrencyInput
+                  id="input-example"
+                  name="input-name"
+                  className="form-control"
+                  placeholder="Please amount"
+                  decimalsLimit={2}
+                  onValueChange={(value) => {
+                    if (Number(value)) {
+                      setAmount(Number(value))
+                    }
+                  }}
+                />
               </div>
             </div>
             <div className="d-grid gap-2">

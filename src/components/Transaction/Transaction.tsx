@@ -28,14 +28,14 @@ export default function Transaction(props: Props) {
     props.payload;
   return (
     <div className="transaction-container">
-      <div>
-        <img src={avatar.image} alt="" className="user-image" />
+      <div className="image-container">
+        <img src={avatar.image} alt="User Image" className="user-image" />
       </div>
       <div className="display-container">
         <div className="info-container">
           <div className="name">{first_name + " " + last_name}</div>
           <div className="dates">
-            {formatRelative(subDays(new Date(paidAt), 3), new Date())}
+            {formatRelative(new Date(paidAt), new Date())}
           </div>
           <div className="location">
             <div className="country-name">{location.country}</div>
