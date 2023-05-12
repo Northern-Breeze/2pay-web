@@ -9,12 +9,18 @@ import { Transact } from '../../interface/Transactions.interface';
 
 import "./Transactions.scss";
 import Loading from "../../components/Loading";
+import { useStoreState, State } from "easy-peasy";
+
+import { Model, Profile } from "../../store/model";
 
 type SERVER_STATE = "IDLE" | "LOADING" | "SUCCESS" | "ERROR";
 
 export default function Transactions() {
   const [trans, setTrans] = React.useState<Transact[]>([]);
   const [serverState, setServerState] = React.useState<SERVER_STATE>("IDLE");
+  
+  const profile: Profile = useStoreState<Model>((store: State<Model>) => store.profile);
+
   const fetchTransactions = React.useCallback(async () => {
     try {
       setServerState("LOADING");
@@ -53,7 +59,7 @@ export default function Transactions() {
                 <Empty />
               </div>
             )) ||
-              trans.map((i, index) => <Transaction key={'key-' + index} payload={i} />))}
+              trans.map((i, index) => <Transaction key={'key-' + index} payload={i} profile={profile} />))}
           {serverState === "ERROR" && (
             <Error message="Failed to load transactions" />
           )}

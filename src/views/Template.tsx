@@ -8,17 +8,20 @@ import {
   SearchOutlined,
   UserOutlined,
   LogoutOutlined,
-  QuestionOutlined,
   MoneyCollectOutlined,
   HomeOutlined,
   ScanOutlined,
-  InfoCircleOutlined,
-  BankOutlined
+  BankOutlined,
+  NotificationOutlined,
+  MailOutlined,
+  QrcodeOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
+import { useStoreState } from "easy-peasy";
+
+import { Model } from "../store/model";
 
 import "./Template.scss";
-import { useStoreState } from "easy-peasy";
-import { Model } from "../store/model";
 
 const { Header, Sider, Content } = Layout;
 
@@ -55,7 +58,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
     );
   }
   return (
-    <Layout>
+    <Layout className="main-layout">
       <Sider
         trigger={null}
         collapsible
@@ -69,7 +72,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             alt="Northern Breeze"
           />
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={[defaultIndex]}>
+        <Menu theme="light" mode="inline" defaultSelectedKeys={[defaultIndex]}>
           <Menu.Item
             key="1"
             icon={<HomeOutlined />}
@@ -98,32 +101,45 @@ export default function TemplateWrapper(props: Props): JSX.Element {
             Search
           </Menu.Item>
           <Menu.Item
-            key="4"
-            icon={<InfoCircleOutlined />}
+            key="10"
+            icon={<QrcodeOutlined />}
             onClick={() => {
-              navigate("/about");
+              navigate("/get-qr-code");
             }}
           >
-            About Kashwallet
+            Generate QR Code
           </Menu.Item>
           <Menu.Item
-            key="5"
-            icon={<QuestionOutlined />}
+            key="14"
+            icon={<LinkOutlined />}
             onClick={() => {
-              navigate("/help");
+              navigate("/get-payment-link");
             }}
           >
-            Help
+            Payment link
           </Menu.Item>
-          <Menu.Item
+          <Menu.SubMenu
+            title="Notifications"
             key="6"
-            icon={<MoneyCollectOutlined />}
-            onClick={() => {
-              navigate("/transactions");
-            }}
+            icon={<NotificationOutlined />}
           >
-            Transactions
-          </Menu.Item>
+            <Menu.Item
+              icon={<MoneyCollectOutlined />}
+              onClick={() => {
+                navigate("/transactions");
+              }}
+            >
+              Transactions
+            </Menu.Item>
+            <Menu.Item
+              onClick={() => {
+                navigate("/messages");
+              }}
+              icon={<MailOutlined />}
+            >
+              Notifications
+            </Menu.Item>
+          </Menu.SubMenu>
           <Menu.Item
             key="7"
             icon={<BankOutlined />}
@@ -135,6 +151,12 @@ export default function TemplateWrapper(props: Props): JSX.Element {
           </Menu.Item>
           <Menu.Item
             key="8"
+            style={{
+              position: "absolute",
+              bottom: 30,
+              zIndex: 1,
+              transition: "all 0.2s",
+            }}
             icon={<UserOutlined />}
             onClick={() => {
               navigate("/profile");
@@ -144,6 +166,12 @@ export default function TemplateWrapper(props: Props): JSX.Element {
           </Menu.Item>
           <Menu.Item
             key="9"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              zIndex: 1,
+              transition: "all 0.2s",
+            }}
             icon={<LogoutOutlined />}
             onClick={() => {
               localStorage.clear();
@@ -155,7 +183,7 @@ export default function TemplateWrapper(props: Props): JSX.Element {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Header className="site-layout-background">
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {

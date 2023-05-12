@@ -7,6 +7,7 @@ import Server from "../../networking/server";
 
 import Button from "../../components/common/Button";
 import Loading from "../../components/Loading";
+import CurrencyInput from "react-currency-input-field";
 
 type SERVER_STATE = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 
@@ -17,11 +18,6 @@ export default function QRCode() {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-
-  const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value as unknown as number;
-    setAmount(val);
-  };
 
   const retryPayment = () => {
     console.log("Something");
@@ -66,7 +62,7 @@ export default function QRCode() {
   };
 
   return (
-    <TemplateWrapper defaultIndex="1">
+    <TemplateWrapper defaultIndex="10">
       <div className="qrcode-container">
         <div className="pay-link-container">
           {serverState === "IDLE" && (
@@ -105,19 +101,18 @@ export default function QRCode() {
                 />
               </div>
               <div className="form-group">
-                <div className="amount-enter">
-                  <div className="input-group mb-3">
-                    <span className="input-group-text">ZAR</span>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={amount}
-                      onChange={handleAmount}
-                      aria-label="Amount (to the nearest dollar)"
-                    />
-                    <span className="input-group-text">.00</span>
-                  </div>
-                </div>
+                <CurrencyInput
+                  id="input-example"
+                  name="input-name"
+                  className="form-control"
+                  placeholder="Please amount"
+                  decimalsLimit={2}
+                  onValueChange={(value) => {
+                    if (Number(value)) {
+                      setAmount(Number(value));
+                    }
+                  }}
+                />
               </div>
               <div className="d-grid gap-2">
                 <button

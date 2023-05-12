@@ -1,8 +1,9 @@
 import * as React from "react";
-import { formatRelative, subDays } from "date-fns";
+import { formatRelative } from "date-fns";
 import ReactCountryFlag from "react-country-flag";
 
 import "./Transaction.scss";
+import { Profile } from "../../store/model";
 
 type Props = {
   payload: {
@@ -21,11 +22,13 @@ type Props = {
       username: string;
     };
   };
+  profile: Profile;
 };
 
 export default function Transaction(props: Props) {
-  const { first_name, last_name, currency, amount, paidAt, avatar, location } =
-    props.payload;
+  const { profile, payload } = props;
+  const { first_name, last_name, currency, amount, paidAt, avatar, location, email } =
+    payload;
   return (
     <div className="transaction-container">
       <div className="image-container">
@@ -53,7 +56,10 @@ export default function Transaction(props: Props) {
             <span>{currency}</span>
           </div>
           <div className="amount-container">
-            <span>{amount / 100}</span>
+            <span>
+              {profile.email === email ? '-' : '+'}
+              {amount / 100}
+            </span>
           </div>
         </div>
       </div>
